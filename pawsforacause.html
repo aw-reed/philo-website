@@ -1,0 +1,974 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Paws for a Cause 2024</title>
+    <link rel="icon" type="image/png" href="icon.png">
+    <style>
+        :root {
+            --background-color: linear-gradient(54deg, #FD7B01, #ffcc80);
+            --text-color: #3c3f64;
+            --primary-color: #FD7B01;
+        }
+
+        *,
+        *::before,
+        *::after {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font: normal 16px 'Arial', sans-serif;
+            color: var(--text-color);
+            overflow-x: hidden;
+            padding-bottom: 50px;
+            background-image: url('akpsi_background.jpg')
+        }
+
+        .header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px;
+            background: var(--primary-color);
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+
+        .logo {
+            width: 200px;
+            height: auto;
+        }
+
+        .menu {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin-left: 365px;
+        }
+
+
+        .menu a {
+            font-size: 24px;
+            font-weight: bold;
+            color: white;
+            text-decoration: none;
+            transition: color 0.3s ease;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+            margin-right: 20px;
+        }
+
+        .menu a:last-child {
+            margin-right: 0;
+        }
+
+        .menu a:hover {
+            color: #ff9900;
+        }
+
+        #category-select {
+            appearance: none;
+            -webkit-appearance: none;
+            -moz-appearance: none;
+            background-color: var(--primary-color);
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            font-size: 16px;
+            cursor: pointer;
+            outline: none;
+            position: relative;
+        }
+
+        .leaderboard {
+            margin: 20px auto;
+            max-width: 800px;
+            padding: 0;
+            border: none;
+        }
+
+        .leaderboard a {
+            font-size: 24px;
+            font-weight: bold;
+            color: white;
+            text-decoration: none;
+            transition: color 0.3s ease;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+        }
+
+        .leaderboard a:hover {
+            color: #ff9900;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        th, td {
+            padding: 10px;
+            text-align: center;
+        }
+
+        thead {
+            background-color: var(--primary-color);
+            color: #fff;
+        }
+
+        tbody tr {
+            background-color: #ffcc80;
+        }
+
+
+        tbody tr:hover {
+            background-color: #ddd;
+        }
+
+        .philanthropy-section {
+            text-align: center;
+            margin-top: 50px;
+        }
+
+        .section-title {
+            font-size: 24px;
+            font-weight: bold;
+            text-transform: uppercase;
+            color: white;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+            margin-bottom: 20px;
+        }
+
+        .description-boxes {
+            display: flex;
+            justify-content: center;
+        }
+
+        .description-box {
+            width: 300px;
+            height: 300px;
+            perspective: 1000px;
+            margin: 0 10px;
+        }
+
+        .box-front,
+        .box-back {
+            width: 100%;
+            height: 100%;
+            position: absolute;
+            background-color: #f2e5db;
+            transition: transform 0.5s;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            backface-visibility: hidden;
+        }
+
+        .description-box:hover .box-front {
+            transform: rotateY(180deg);
+        }
+
+        .description-box:hover .box-back {
+            transform: rotateY(0deg);
+        }
+
+        .box-back {
+            transform: rotateY(180deg);
+            padding: 20px;
+            text-align: center;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .button {
+            display: inline-block;
+            padding: 10px 20px;
+            background-color: var(--primary-color);
+            color: white;
+            text-decoration: none;
+            border-radius: 5px;
+            transition: background-color 0.3s ease;
+        }
+
+        .button:hover {
+            background-color: #ff9900;
+        }
+
+        .calendar-section h2.section-title {
+            text-align: center;
+        }
+
+        .calendar-section {
+            margin-top: 20px;
+            margin-bottom: 20px;
+        }
+
+        .timeline {
+            margin-top: 20px;
+            margin-bottom: 20px;
+        }
+
+        .timeline ul {
+            list-style-type: none;
+            padding: 0;
+            margin: 0 auto;
+        }
+
+        .timeline ul li {
+            position: relative;
+            width: 6px;
+            margin: 0 auto;
+            padding-top: 50px;
+            background: #fff;
+        }
+
+        .timeline ul li::after {
+            content: '';
+            position: absolute;
+            left: 50%;
+            bottom: 0;
+            transform: translateX(-50%) rotate(45deg);
+            width: 20px;
+            height: 20px;
+            z-index: 2;
+            background: #eee;
+        }
+
+        .timeline ul li div {
+            position: relative;
+            bottom: 0;
+            width: 400px;
+            padding: 20px;
+            background: var(--primary-color);
+            box-shadow: 4px 13px 30px 1px rgba(252, 56, 56, 0.2);
+            border-radius: 5px;
+            display: flex;
+        }
+
+        .timeline ul li div time {
+            position: absolute;
+            background: #f5af19;
+            width: 80px;
+            height: 30px;
+            top: -15px;
+            border-radius: 5px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            letter-spacing: 2px;
+            transition: opacity 0.3s ease;
+            opacity: 1;
+        }
+
+        .timeline ul li div:hover time {
+            opacity: 0;
+        }
+
+        .timeline ul li div div {
+            height: 100px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .timeline ul li div div p {
+            text-align: center;
+        }
+
+        .timeline ul li div.dayevent {
+            margin-right: 10px;
+        }
+
+        .timeline ul li div {
+            visibility: hidden;
+            opacity: 0;
+            transition: all 0.5s ease-in-out;
+        }
+
+        .timeline ul li:nth-of-type(odd) div {
+            transform: translate3d(-100px, -10px, 0) rotate(10deg);
+        }
+
+        .timeline ul li:nth-of-type(even) div {
+            transform: translate3d(100px, -10px, 0) rotate(10deg);
+        }
+
+        .timeline ul li.in-view div {
+            transform: none;
+            visibility: visible;
+            opacity: 1;
+        }
+
+        @media screen and (max-width: 900px) {
+            .timeline ul li div {
+                width: 250px;
+                flex-direction: column;
+            }
+            .timeline ul li:nth-of-type(even) div {
+                left: -289px;
+            }
+        }
+
+        @media screen and (max-width: 600px) {
+            body {
+                background: #8bfff4;
+            }
+            .timeline ul li {
+                margin-left: 20px;
+            }
+            .timeline ul li div {
+                width: calc(100vw - 91px);
+            }
+            .timeline ul li:nth-of-type(even) div {
+                left: 45px;
+            }
+        }
+
+        .timeline ul li div .info-wrapper {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            backface-visibility: hidden;
+            transform: rotateY(180deg);
+        }
+
+        .timeline ul li div:hover .info-wrapper {
+            transform: rotateY(0deg);
+        }
+
+        .info-content {
+            padding: 20px;
+            text-align: center;
+        }
+
+        .top-dawgs {
+            text-align: center;
+            margin-top: 50px;
+        }
+
+        .section-title {
+            font-size: 24px;
+            font-weight: bold;
+            text-transform: uppercase;
+            color: white;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+            margin-bottom: 20px;
+        }
+
+        .box-rows {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+
+        .box-row {
+            display: flex;
+            margin-bottom: 20px;
+        }
+
+        .top-dog-box {
+            width: 200px;
+            height: 200px;
+            background-color: #f2e5db;
+            margin: 0 10px;
+            border-radius: 10px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+
+        .top-dog-info {
+            text-align: center;
+            margin-top: 10px;
+        }
+
+        .top-dog-info p {
+            font-size: 16px;
+            color: var(--text-color);
+        }
+
+        .top-dog-info p.name {
+            font-weight: bold;
+            margin-bottom: 5px;
+        }
+
+        .top-dog-info p.organization {
+            font-style: italic;
+        }
+
+        .social-icons {
+            position: fixed;
+            top: 50%;
+            right: 20px;
+            transform: translateY(-50%);
+            z-index: 1000;
+        }
+
+        .social-icons a {
+            display: block;
+            margin-bottom: 10px;
+            position: relative;
+        }
+
+        .social-icons a img {
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+            background-color: white;
+            padding: 5px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+
+        .gallery-section {
+            text-align: center;
+            margin-top: 50px;
+        }
+
+        .gallery {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-wrap: wrap;
+        }
+
+        .image {
+            position: relative;
+            margin: 10px;
+            width: 300px;
+            height: 300px;
+            overflow: hidden;
+        }
+
+        .image img {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.3s, filter 0.3s;
+        }
+
+        .image img.bw {
+            filter: grayscale(100%);
+        }
+
+        .image:hover img.bw {
+            transform: scale(1.1);
+            filter: grayscale(0%);
+        }
+
+        .image:hover img.color {
+            transform: scale(1.1);
+        } 
+        
+        .footer {
+            color: white;
+            text-align: center;
+            position: relative;
+            bottom: 0;
+            width: 100%;
+        }
+
+        .footer .logo img {
+            width: 300px;
+        }
+
+        .footer .developer-info {
+            float: right;
+            font-size: 14px;
+            font-weight: bold;
+            margin-right: 30px;
+        }
+    </style>
+</head>
+
+<body>
+    <header class="header">
+        <div class="menu">
+            <a href="#leaderboard">Leaderboard</a>
+            <a href="#philanthropy">Philanthropy</a>
+            <a href="#calendar">Calendar</a>
+            <a href="#top-dawgs">Top Dawgs</a>
+            <a href="#gallery">Gallery</a>
+        </div>
+    </header>
+
+    <div class="social-icons">
+        <a href="https://www.instagram.com/ucmakpsi"><img src="instagram.png" alt="Instagram"></a>
+        <a href="https://www.tiktok.com/@ucmakpsi"><img src="tiktok.png" alt="TikTok"></a>
+        <a href="https://www.ucmakpsi.com"><img src="www.png" alt="Other Website"></a>
+    </div>
+
+    <section id="leaderboard" class="leaderboard">
+        <label for="category-select" style="color: white;">Select Category:</label>
+        <select id="category-select">
+            <option value="all">All</option>
+            <option value="panhellenic">Sororities</option>
+            <option value="professional">Professionals</option>
+            <option value="rco">Organizations</option>
+            <option value="social">Socials</option>
+        </select>
+        <h2 class="section-title" style="text-align: center">Leaderboard</h2>
+        <table>
+            <thead>
+                <tr>
+                    <th>Rank</th>
+                    <th>Organization Name</th>
+                    <th>Score</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr data-category="professional">
+                    <td>1</td>
+                    <td><a href="https://www.instagram.com/apoahg/">Alpha Phi Omega</a></td>
+                    <td>0</td>
+                </tr>
+                <tr data-category="rco">
+                    <td>2</td>
+                    <td><a href="https://www.instagram.com/ucm_businessociety/">Business Society</a></td>
+                    <td>0</td>
+                </tr>
+                <tr data-category="rco">
+                    <td>3</td>
+                    <td><a href="https://www.instagram.com/ucmcab/">Campus Activities Board</a></td>
+                    <td>0</td>
+                </tr>
+                <tr data-category="panhellenic">
+                    <td>4</td>
+                    <td><a href="https://www.instagram.com/ucmtridelta/">Delta Delta Delta</a></td>
+                    <td>0</td>
+                </tr>
+                <tr data-category="professional">
+                    <td>5</td>
+                    <td><a href="https://www.instagram.com/dem_theta/">Delta Epsilon Mu</a></td>
+                    <td>0</td>
+                </tr>
+                <tr data-category="professional">
+                    <td>6</td>
+                    <td><a href="https://www.instagram.com/ucmdeltasigmapi/">Delta Sigma Pi</a></td>
+                    <td>0</td>
+                </tr>
+                <tr data-category="panhellenic">
+                    <td>7</td>
+                    <td><a href="https://www.instagram.com/kappaucm/">Kappa Kappa Gamma</a></td>
+                    <td>0</td>
+                </tr>
+                <tr data-category="social">
+                    <td>8</td>
+                    <td><a href="https://www.instagram.com/kappasigmaucm/">Kappa Sigma</a></td>
+                    <td>0</td>
+                </tr>
+                <tr data-category="social">
+                    <td>9</td>
+                    <td><a href="https://www.instagram.com/ucmodphi/">Omega Delta Phi</a></td>
+                    <td>0</td>
+                </tr>
+                <tr data-category="professional">
+                    <td>10</td>
+                    <td><a href="https://www.instagram.com/ucm_pad/">Phi Alpha Delta</a></td>
+                    <td>0</td>
+                </tr>
+                <tr data-category="professional">
+                    <td>11</td>
+                    <td><a href="https://www.instagram.com/ucmercedphide/">Phi Delta Epsilon</a></td>
+                    <td>0</td>
+                </tr>
+                <tr data-category="panhellenic">
+                    <td>12</td>
+                    <td><a href="https://www.instagram.com/ucmercedphimu/">Phi Mu</a></td>
+                    <td>0</td>
+                </tr>
+                <tr data-category="professional">
+                    <td>13</td>
+                    <td><a href="https://www.instagram.com/mdthetatau/">Theta Tau</a></td>
+                    <td>0</td>
+                </tr>
+            </tbody>
+        </table>
+    </section>
+
+    <section id="philanthropy" class="philanthropy-section">
+        <h2 class="section-title">Philanthropy</h2>
+        <div class="description-boxes">
+            <div class="description-box">
+                <div class="box-front">
+                    <img src="nbfmca.jpg" alt="Image 1">
+                </div>
+                <div class="box-back">
+                    <h1 style="font-size: 18px; margin-bottom: 10px;">New Beginnings for Merced County Animals</h1>
+                    <p style="font-size: 14px; margin-bottom: 10px;">The goal of New Beginnings is to create a new standard in rescue operations with education and community involvement to end the suffering of animals who are lost, abandoned, or given up to the Merced County shelter.<p>
+                    <a href="https://www.newbeginningsforanimalsmerced.org" class="button">Learn More</a>
+                </div>
+            </div>
+            <div class="description-box">
+                <div class="box-front">
+                    <img src="creamback.jpg" alt="Image 2">
+                </div>
+                <div class="box-back">
+                    <h1 style="font-size: 18px; margin-bottom: 10px;">Paws for a Cause Shirts</h1>
+                    <p style="font-size: 14px; margin-bottom: 10px;">Pre Sale: April 10-14 | $21<br>Regular Sale: April 15 - 19 | $23<br>Sizes: XS, S, M, L, XL, 2XL, 3XL<br>Colors: Black & Cream<p>
+                    <a href="https://docs.google.com/forms/d/e/1FAIpQLSdoKyG--yzjDpkz74PixM7bu9bDh6xNWSj_We65KKwddSJFoA/viewform" class="button">Buy Now</a>
+                </div>
+            </div>
+        </div>    
+    </section>
+
+    <section id="calendar" class="calendar-section">
+        <h2 class="section-title">Calendar</h2>
+        <div class="timeline">
+            <ul>
+                <li>
+                    <div>
+                        <time>April 15</time>
+                        <div class="dayevent">
+                            <h1 style="font-size: 18px;">Bark Bites</h1>
+                            <p style="text-align: center; font-size: 14px;">
+                                11 AM - 2 PM<br>Scholar's Lane
+                            </p>
+                        </div>
+                        <div class="nightevent">
+                            <h1 style="font-size: 18px;">Crafty Canines</h1>
+                            <span style="text-align: center; font-size: 14px;">6:30 PM - 8:30 PM<br>California Room</span>
+                        </div>
+                        <div class="info-wrapper">
+                            <div class="info-content">
+                                <h2 style="font-size: 18px;">Monday</h2>
+                                <p style="font-size: 14px;">In the morning, we are selling animal themed cookies!</p>
+                                <p style="font-size: 14px;">In the evening, we will be making dog toys using shirts!</p>
+                                <p style="font-size: 14px;"><strong>Cookies: $4 - 4000 Points | Toys: 1 - 1000 Points</strong></p>
+                            </div>
+                        </div>
+                    </div>
+                </li>
+                <li>
+                    <div>
+                        <time>April 16</time>
+                        <div class="dayevent">
+                            <h1 style="font-size: 18px;">Toy Talks</h1>
+                            <p style="text-align: center; font-size: 14px;">
+                                11 AM - 2 PM<br>Scholar's Lane
+                            </p>
+                        </div>
+                        <div class="nightevent">
+                            <h1 style="font-size: 18px;">Panda Express</h1>
+                            <span style="text-align: center; font-size: 14px;">3 PM - 10 PM<br>165 E. Yosemite Ave.</span>
+                        </div>
+                        <div class="info-wrapper">
+                            <div class="info-content">
+                                <h2 style="font-size: 18px;">Tuesday</h2>
+                                <p style="font-size: 14px;">In the morning, we will have 1-on-1 talks with YOU!</p>
+                                <p style="font-size: 14px;">Later, we are eating Panda Express for dinner!</p>
+                                <p style="font-size: 14px;"><strong>Talks: 1 - 1500 Points | Receipts: 1 - 6000 Points</strong></p>
+                            </div>
+                        </div>
+                    </div>
+                </li>
+                <li>
+                    <div>
+                        <time>April 17</time>
+                        <div class="dayevent">
+                            <h1 style="font-size: 18px;">Toy Talks</h1>
+                            <p style="text-align: center; font-size: 14px;">
+                                11 AM - 2 PM<br>Scholar's Lane
+                            </p>
+                        </div>
+                        <div class="nightevent">
+                            <h1 style="font-size: 18px; text-align: center;">Smooch the Pooch</h1>
+                            <span style="text-align: center; font-size: 14px;">3:30 PM - 5:30 PM<br>CTK Quad</span>
+                        </div>
+                        <div class="info-wrapper">
+                            <div class="info-content">
+                                <h2 style="font-size: 18px;">Wednesday</h2>
+                                <p style="font-size: 14px;">In the morning, we will have 1-on-1 talks with YOU!</p>
+                                <p style="font-size: 14px;">In the afternoon, we are taking photos with multiple dogs!</p>
+                                <p style="font-size: 14px;"><strong>Talks: 1 - 1500 Points | Photos: $5 - 5000 Points</strong></p>
+                            </div>
+                        </div>
+                    </div>
+                </li>
+                <li>
+                    <div>
+                        <time>April 18</time>
+                        <div class="dayevent">
+                            <h1 style="font-size: 18px; text-align: center;">Cupcake 4 a Pup's Sake</h1>
+                            <p style="text-align: center; font-size: 14px;">
+                                11 AM - 2 PM<br>Scholar's Lane
+                            </p>
+                        </div>
+                        <div class="nightevent">
+                            <h1 style="font-size: 18px;">Bark Battle</h1>
+                            <span style="text-align: center; font-size: 14px;">8 PM - 9 PM<br>ACS 120</span>
+                        </div>
+                        <div class="info-wrapper">
+                            <div class="info-content">
+                                <h2 style="font-size: 18px;">Thursday</h2>
+                                <p style="font-size: 14px;">In the morning, we are selling cupcakes!</p>
+                                <p style="font-size: 14px;">In the evening, we are having a talent show!</p>
+                                <p style="font-size: 14px;"><strong>Cupcakes: $4 - 4000 Points | Winner: 100000 Points</strong></p>
+                            </div>
+                        </div>
+                    </div>
+                </li>
+                <li>
+                    <div>
+                        <time>April 19</time>
+                        <div class="dayevent">
+                            <h1 style="font-size: 18px;">Dog Ball</h1>
+                            <p style="text-align: center; font-size: 14px;">
+                                3 PM - 5 PM<br>Elmer Murchie Park
+                            </p>
+                        </div>
+                        <div class="nightevent">
+                            <h1 style="font-size: 18px; text-align: center;">Paws & Refresh</h1>
+                            <span style="text-align: center; font-size: 14px;">3 PM - 5 PM<br>Elmer Murchie Park</span>
+                        </div>
+                        <div class="info-wrapper">
+                            <div class="info-content">
+                                <h2 style="font-size: 18px;">Friday</h2>
+                                <p style="font-size: 14px;">In the afternoon, we are playing water balloon dodgeball!</p>
+                                <p style="font-size: 14px;">We are also having a lemonade stand!</p>
+                                <p style="font-size: 14px;"><strong>$15 Per Organization | Lemonade: $3 - 3000 Points</strong></p>
+                            </div>
+                        </div>
+                    </div>
+                </li>
+            </ul>
+        </div>
+    </section>
+
+    <section id="top-dawgs" class="top-dawgs">
+        <h2 class="section-title">Top Dawgs</h2>
+        <div class="box-rows">
+            <div class="box-row">
+                <div class="top-dog-box">
+                    <img src="image_path.jpg" alt="Top Dawg Image">
+                    <div class="top-dog-info">
+                        <p class="name">Andrew Reed</p>
+                        <p class="organization">Alpha Phi Omega</p>
+                    </div>
+                </div>
+                <div class="top-dog-box">
+                    <img src="image_path.jpg" alt="Top Dawg Image">
+                    <div class="top-dog-info">
+                        <p class="name">Eduardo Rolon</p>
+                        <p class="organization">Business Society</p>
+                    </div>
+                </div>
+            </div>
+            <div class="box-row">
+                <div class="top-dog-box">
+                    <img src="image_path.jpg" alt="Top Dawg Image">
+                    <div class="top-dog-info">
+                        <p class="name">Anthony Reyes</p>
+                        <p class="organization">Campus Activities Board</p>
+                    </div>
+                </div>
+                <div class="top-dog-box">
+                    <img src="image_path.jpg" alt="Top Dawg Image">
+                    <div class="top-dog-info">
+                        <p class="name">Mahogany Grissom</p>
+                        <p class="organization">Delta Delta Delta</p>
+                    </div>
+                </div>
+            </div>
+            <div class="box-row">
+                <div class="top-dog-box">
+                    <img src="image_path.jpg" alt="Top Dawg Image">
+                    <div class="top-dog-info">
+                        <p class="name">Andrew Reed</p>
+                        <p class="organization">Delta Epsilon Mu</p>
+                    </div>
+                </div>
+                <div class="top-dog-box">
+                    <img src="image_path.jpg" alt="Top Dawg Image">
+                    <div class="top-dog-info">
+                        <p class="name">Andrew Reed</p>
+                        <p class="organization">Delta Sigma Pi</p>
+                    </div>
+                </div>
+            </div>
+            <div class="box-row">
+                <div class="top-dog-box">
+                    <img src="image_path.jpg" alt="Top Dawg Image">
+                    <div class="top-dog-info">
+                        <p class="name">Destiny Soltero</p>
+                        <p class="organization">Kappa Kappa Gamma</p>
+                    </div>
+                </div>
+                <div class="top-dog-box">
+                    <img src="image_path.jpg" alt="Top Dawg Image">
+                    <div class="top-dog-info">
+                        <p class="name">Malcolm Berry</p>
+                        <p class="organization">Kappa Sigma</p>
+                    </div>
+                </div>
+            </div>
+            <div class="box-row">
+                <div class="top-dog-box">
+                    <img src="image_path.jpg" alt="Top Dawg Image">
+                    <div class="top-dog-info">
+                        <p class="name">Andrew Reed</p>
+                        <p class="organization">Omega Delta Phi</p>
+                    </div>
+                </div>
+                <div class="top-dog-box">
+                    <img src="image_path.jpg" alt="Top Dawg Image">
+                    <div class="top-dog-info">
+                        <p class="name">Andrew Reed</p>
+                        <p class="organization">Phi Alpha Delta</p>
+                    </div>
+                </div>
+            </div>
+            <div class="box-row">
+                <div class="top-dog-box">
+                    <img src="image_path.jpg" alt="Top Dawg Image">
+                    <div class="top-dog-info">
+                        <p class="name">Andrew Reed</p>
+                        <p class="organization">Phi Delta Epsilon</p>
+                    </div>
+                </div>
+                <div class="top-dog-box">
+                    <img src="image_path.jpg" alt="Top Dawg Image">
+                    <div class="top-dog-info">
+                        <p class="name">Sarine Yeghiayan</p>
+                        <p class="organization">Phi Mu</p>
+                    </div>
+                </div>
+            </div>
+            <div class="box-row">
+                <div class="top-dog-box">
+                    <img src="image_path.jpg" alt="Top Dawg Image">
+                    <div class="top-dog-info">
+                        <p class="name">Aliza Ramos</p>
+                        <p class="organization">Theta Tau</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <section id="gallery" class="gallery-section">
+        <h2 class="section-title">Gallery</h2>
+        <div class="gallery">
+            <div class="image">
+                <img src="1.png" alt="Image 1" class="bw">
+            </div>
+            <div class="image">
+                <img src="2.png" alt="Image 2" class="bw">
+            </div>
+            <div class="image">
+                <img src="3.png" alt="Image 3" class="bw">
+            </div>
+            <div class="image">
+                <img src="4.png" alt="Image 4" class="bw">
+            </div>
+            <div class="image">
+                <img src="5.png" alt="Image 5" class="bw">
+            </div>
+            <div class="image">
+                <img src="6.png" alt="Image 6" class="bw">
+            </div>
+            <div class="image">
+                <img src="7.png" alt="Image 7" class="bw">
+            </div>
+            <div class="image">
+                <img src="8.png" alt="Image 8" class="bw">
+            </div>
+            <div class="image">
+                <img src="9.png" alt="Image 9" class="bw">
+            </div>
+            <div class="image">
+                <img src="10.png" alt="Image 10" class="bw">
+            </div>
+            <div class="image">
+                <img src="11.png" alt="Image 11" class="bw">
+            </div>
+            <div class="image">
+                <img src="12.png" alt="Image 12" class="bw">
+            </div>
+        </div>
+    </section>
+
+    <footer class="footer">
+        <div class="logo">
+            <img src="logo.jpg" alt="Logo">
+        </div>
+        <div class="developer-info">
+            Website by Andrew Reed
+        </div>
+    </footer>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            const menuLinks = document.querySelectorAll('.menu a');
+
+            menuLinks.forEach(function(link) {
+                link.addEventListener('click', function(event) {
+                    event.preventDefault();
+
+                    const targetId = this.getAttribute('href').substring(1);
+                    const targetSection = document.getElementById(targetId);
+
+                    if (targetSection) {
+                        const offsetTop = targetSection.offsetTop;
+                        window.scrollTo({
+                            top: offsetTop,
+                            behavior: "smooth"
+                        });
+                    }
+                });
+            });
+        });
+
+        document.addEventListener("DOMContentLoaded", function() {
+        var categorySelect = document.getElementById("category-select");
+        var rows = document.querySelectorAll(".leaderboard tbody tr");
+
+        categorySelect.addEventListener("change", function() {
+            var selectedCategory = categorySelect.value;
+
+            rows.forEach(function(row) {
+                var category = row.getAttribute("data-category");
+
+                if (selectedCategory === "all" || selectedCategory === category) {
+                    row.style.display = "table-row";
+                } else {
+                    row.style.display = "none";
+                }
+            });
+        });
+    });
+
+        var items = document.querySelectorAll(".timeline li");
+
+        function isElementInViewport(el) {
+            var rect = el.getBoundingClientRect();
+            return (
+                rect.top >= 0 &&
+                rect.left >= 0 &&
+                rect.bottom <= (window.innerHeight || document.documentElement.clientHeight) &&
+                rect.right <= (window.innerWidth || document.documentElement.clientWidth)
+            );
+        }
+
+        function callbackFunc() {
+            for (var i = 0; i < items.length; i++) {
+                if (isElementInViewport(items[i])) {
+                    if (!items[i].classList.contains("in-view")) {
+                        items[i].classList.add("in-view");
+                    }
+                } else if (items[i].classList.contains("in-view")) {
+                    items[i].classList.remove("in-view");
+                }
+            }
+        }
+
+        window.addEventListener("load", callbackFunc);
+        window.addEventListener("scroll", callbackFunc);
+    </script>
+</body>
+</html>
