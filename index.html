@@ -343,6 +343,105 @@
             .menu a:hover {
                 display: none;
             }
+
+            .calendar-section {
+                margin-top: 20px;
+                margin-bottom: 20px;
+            }
+
+            .timeline {
+                margin-bottom: 20px;
+            }
+
+            .timeline ul {
+                list-style-type: none;
+                padding: 0;
+                margin: 0 auto;
+            }
+
+            .timeline ul li {
+                position: relative;
+                width: 100%;
+                margin: 0 auto;
+                padding-top: 50px;
+            }
+
+            .timeline ul li::after {
+                content: '';
+                position: absolute;
+                left: 50%;
+                bottom: 0;
+                transform: translateX(-50%) rotate(45deg);
+                width: 25%;
+                height: 20px;
+                z-index: 2;
+            }
+
+            .timeline ul li div {
+                position: relative;
+                bottom: 0;
+                width: 100%;
+                padding: 20px;
+                background: var(--primary-color);
+                box-shadow: 4px 13px 30px 1px rgba(252, 56, 56, 0.2);
+                border-radius: 5px;
+                display: flex;
+            }
+
+            .timeline ul li div time {
+                position: absolute;
+                background: #f5af19;
+                width: 25%;
+                height: 30px;
+                top: -15px;
+                border-radius: 5px;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                letter-spacing: 2px;
+                transition: opacity 0.3s ease;
+                opacity: 1;
+            }
+
+            .timeline ul li div:hover time {
+                opacity: 0;
+            }
+
+            .timeline ul li div div {
+                height: 100px;
+                display: flex;
+                flex-direction: column;
+                justify-content: center;
+                align-items: center;
+            }
+
+            .timeline ul li div div p {
+                text-align: center;
+            }
+
+            .timeline ul li div.dayevent {
+                margin-right: 10px;
+            }
+
+            .timeline ul li div {
+                visibility: hidden;
+                opacity: 0;
+                transition: all 0.5s ease-in-out;
+            }
+
+            .timeline ul li:nth-of-type(odd) div {
+                transform: translate3d(-100px, -10px, 0) rotate(10deg);
+            }
+
+            .timeline ul li:nth-of-type(even) div {
+                transform: translate3d(100px, -10px, 0) rotate(10deg);
+            }
+
+            .timeline ul li.in-view div {
+                transform: none;
+                visibility: visible;
+                opacity: 1;
+            }
         }
 
         .timeline ul li div .info-wrapper {
